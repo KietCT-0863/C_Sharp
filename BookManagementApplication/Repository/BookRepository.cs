@@ -30,7 +30,7 @@ namespace Repositories
         /// <summary>
         /// This method used to TAKE ALL book from database
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Return List<Book></returns>
         public List<Book> GetBooksFromDB()
         {
             _context = new();
@@ -77,7 +77,7 @@ namespace Repositories
         {
             _context = new();
             // hàm OrderBy được sử dụng để sắp xếp các phần tử theo thứ tự tăng dần dựa vào thuộc tính bạn chỉ định
-            // thuộc tính được đưa vào bằng cách sử dụng lambda expession
+            // thuộc tính được đưa vào bằng cách sử dụng DELIGATE
             return _context.Books.OrderBy(b => b.BookName).ToList();
         }
 

@@ -16,7 +16,11 @@ namespace TesterDB
             //bookService.RemoveBook(newbook);
             //
 
-            bookService.PrintAllBook();
+            List<Book> printList = bookService.PrintAllBook();
+            for (int i = 0; i < printList.Count; i++)
+            {
+                Console.WriteLine(printList[i]);
+            }
         }
     }
 }
