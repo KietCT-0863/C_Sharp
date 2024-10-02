@@ -12,7 +12,7 @@ namespace Services
     // BookService sẽ thông qua BookRepository để lấy database
     // Same : mỗi method cần truy xuất dữ liệu trong db trên Repo thì Ser đều có
     // Diff : trên Ser có thêm phần xử lý dữ liệu lấy từ db
-    public class BookService
+    public class BookServices
     {
         BookRepository bookRepo = new();
 

@@ -23,9 +23,8 @@ public partial class Book
 
     public virtual BookCategory BookCategory { get; set; } = null!;
 
-    public Book(int bookId, string bookName, string description, DateTime publicationDate, int quantity, double price, string author, int bookCategoryId)
+    public Book(string bookName, string description, DateTime publicationDate, int quantity, double price, string author, int bookCategoryId)
     {
-        BookId = bookId;
         BookName = bookName;
         Description = description;
         PublicationDate = publicationDate;

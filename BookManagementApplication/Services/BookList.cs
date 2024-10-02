@@ -9,7 +9,7 @@ namespace Services
 {
     public class BookList
     {
-        BookService bookService = new();
+        BookServices bookService = new();
         List<Book> bookList = new List<Book>();
 
 

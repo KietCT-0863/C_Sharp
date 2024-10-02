@@ -9,11 +9,11 @@ namespace TesterDB
         static void Main(string[] args)
         {
             //BookRepository bookRepo = new();
-            BookService bookService = new();
+            BookServices bookService = new();
 
             //test addbook()
-            //Book newbook = new Book(18, "Ai da dat ten cho dong song", "123", DateTime.Now, 22, 20.0, "author A", 1);
-            //bookService.RemoveBook(newbook);
+            Book newbook = new Book("Ai da dat ten cho dong song", "123", DateTime.Now, 22, 20.0, "author A", 1);
+            bookService.AddBook(newbook);
             //
 
             List<Book> printList = bookService.PrintAllBook();
@@ -21,6 +21,15 @@ namespace TesterDB
             {
                 Console.WriteLine(printList[i]);
             }
+
+
+
+
+            //UserAccountServices userAccountServices = new();
+
+            //test addUser()
+            //UserAccount userAccount = new() { FullName = "a", Email = "a@gmail.com", Password = "123@123", Role = 3 };
+            //userAccountServices.AddUser(userAccount);
         }
     }
 }
