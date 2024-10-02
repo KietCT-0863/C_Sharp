@@ -28,106 +28,176 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             txtUserName = new TextBox();
             txtPassword = new TextBox();
             btnLogin = new Button();
-            label3 = new Label();
+            picBoxLogo = new PictureBox();
             pictureBox1 = new PictureBox();
+            groupBox1 = new GroupBox();
+            linklblRegister = new LinkLabel();
+            linklblForgotPassword = new LinkLabel();
+            checkBox1 = new CheckBox();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)picBoxLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Ink Free", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(40, 125);
-            label1.Name = "label1";
-            label1.Size = new Size(78, 20);
-            label1.TabIndex = 0;
-            label1.Text = "UserName";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Ink Free", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(40, 154);
-            label2.Name = "label2";
-            label2.Size = new Size(73, 20);
-            label2.TabIndex = 1;
-            label2.Text = "Password";
             // 
             // txtUserName
             // 
-            txtUserName.Location = new Point(130, 122);
+            txtUserName.BackColor = Color.Black;
+            txtUserName.Font = new Font("Ink Free", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUserName.ForeColor = Color.White;
+            txtUserName.Location = new Point(158, 60);
             txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(164, 23);
+            txtUserName.PlaceholderText = " User Name";
+            txtUserName.Size = new Size(201, 33);
             txtUserName.TabIndex = 2;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(130, 151);
+            txtPassword.BackColor = Color.Black;
+            txtPassword.Font = new Font("Ink Free", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.ForeColor = Color.White;
+            txtPassword.Location = new Point(158, 21);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(164, 23);
+            txtPassword.PlaceholderText = " Password";
+            txtPassword.Size = new Size(201, 33);
             txtPassword.TabIndex = 3;
             // 
             // btnLogin
             // 
-            btnLogin.BackColor = Color.Red;
-            btnLogin.Font = new Font("Ink Free", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(205, 180);
+            btnLogin.BackColor = Color.Black;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.Font = new Font("Ink Free", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLogin.ForeColor = Color.Transparent;
+            btnLogin.Location = new Point(158, 129);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(89, 23);
+            btnLogin.Size = new Size(89, 35);
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = false;
             // 
-            // label3
+            // picBoxLogo
             // 
-            label3.Font = new Font("Ink Free", 29.9999962F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(40, 28);
-            label3.Name = "label3";
-            label3.Size = new Size(254, 50);
-            label3.TabIndex = 5;
-            label3.Text = "Login";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
+            picBoxLogo.BorderStyle = BorderStyle.FixedSingle;
+            picBoxLogo.Image = Properties.Resources.MythLogo;
+            picBoxLogo.Location = new Point(6, 21);
+            picBoxLogo.Name = "picBoxLogo";
+            picBoxLogo.Size = new Size(146, 143);
+            picBoxLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picBoxLogo.TabIndex = 7;
+            picBoxLogo.TabStop = false;
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(312, 3);
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.BorderStyle = BorderStyle.Fixed3D;
+            pictureBox1.Image = Properties.Resources.E_PUFNHVQAQkOHo;
+            pictureBox1.Location = new Point(12, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(329, 393);
+            pictureBox1.Size = new Size(604, 516);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(linklblRegister);
+            groupBox1.Controls.Add(linklblForgotPassword);
+            groupBox1.Controls.Add(checkBox1);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(picBoxLogo);
+            groupBox1.Controls.Add(txtPassword);
+            groupBox1.Controls.Add(txtUserName);
+            groupBox1.Controls.Add(btnLogin);
+            groupBox1.Font = new Font("Ink Free", 11.9999981F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            groupBox1.Location = new Point(622, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(371, 516);
+            groupBox1.TabIndex = 9;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "groupBox1";
+            // 
+            // linklblRegister
+            // 
+            linklblRegister.AutoSize = true;
+            linklblRegister.Font = new Font("Ink Free", 15.75F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            linklblRegister.LinkColor = Color.White;
+            linklblRegister.Location = new Point(230, 487);
+            linklblRegister.Name = "linklblRegister";
+            linklblRegister.Size = new Size(129, 26);
+            linklblRegister.TabIndex = 13;
+            linklblRegister.TabStop = true;
+            linklblRegister.Text = "Register now";
+            linklblRegister.LinkClicked += linklblRegister_LinkClicked;
+            // 
+            // linklblForgotPassword
+            // 
+            linklblForgotPassword.AutoSize = true;
+            linklblForgotPassword.Font = new Font("Ink Free", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            linklblForgotPassword.LinkColor = Color.White;
+            linklblForgotPassword.Location = new Point(267, 100);
+            linklblForgotPassword.Name = "linklblForgotPassword";
+            linklblForgotPassword.Size = new Size(92, 15);
+            linklblForgotPassword.TabIndex = 12;
+            linklblForgotPassword.TabStop = true;
+            linklblForgotPassword.Text = "Forgot password";
+            // 
+            // checkBox1
+            // 
+            checkBox1.Font = new Font("Ink Free", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            checkBox1.Location = new Point(158, 99);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(98, 19);
+            checkBox1.TabIndex = 10;
+            checkBox1.Text = "Remember me";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Ink Free", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(6, 487);
+            label1.Name = "label1";
+            label1.Size = new Size(218, 26);
+            label1.TabIndex = 8;
+            label1.Text = "Don't have an account?";
+            // 
             // frmLogin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(645, 398);
+            AutoScaleMode = AutoScaleMode.None;
+            AutoScroll = true;
+            BackColor = Color.Black;
+            ClientSize = new Size(1005, 540);
+            Controls.Add(groupBox1);
             Controls.Add(pictureBox1);
-            Controls.Add(label3);
-            Controls.Add(btnLogin);
-            Controls.Add(txtPassword);
-            Controls.Add(txtUserName);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Font = new Font("Ink Free", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ForeColor = Color.White;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmLogin";
+            Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)picBoxLogo).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
-        private Label label2;
         private TextBox txtUserName;
         private TextBox txtPassword;
         private Button btnLogin;
-        private Label label3;
+        private PictureBox picBoxLogo;
         private PictureBox pictureBox1;
+        private GroupBox groupBox1;
+        private Label label1;
+        private CheckBox checkBox1;
+        private LinkLabel linklblForgotPassword;
+        private LinkLabel linklblRegister;
     }
 }
