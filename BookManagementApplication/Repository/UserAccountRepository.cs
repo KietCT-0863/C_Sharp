@@ -10,9 +10,14 @@ namespace Repositories
 {
     public class UserAccountRepository
     {
-        BookManagementDbContext _context;
+        BookManagementDbContext? _context;
 
-        
+
+        public int GetUserAccountPrimaryKey()
+        {
+            _context = new();
+            return _context.UserAccounts.Max(u => u.MemberId);
+        }
 
         public void AddUserToDB(UserAccount userAccount)
         {
@@ -21,16 +26,11 @@ namespace Repositories
             _context.SaveChanges();
         }
 
-        public List<UserAccount> GetUserAccountsFromDB()
+        public UserAccount? GetUserAccount(string userName, string password)
         {
             _context = new();
-            return _context.UserAccounts.ToList();
-        }
-
-        public int GetUserAccountPrimaryKey()
-        {
-            _context = new();
-            return _context.UserAccounts.Max(u => u.MemberId);
+            // Ternary Operator : toán tử ba ngôi
+            return _context.UserAccounts.FirstOrDefault(userAccount => (userAccount.FullName == userName && userAccount.Password == password) ? true : false);
         }
     }
 }

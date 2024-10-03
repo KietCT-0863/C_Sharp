@@ -37,10 +37,8 @@
             txtNewPassword = new TextBox();
             txtNewEmail = new TextBox();
             txtNewUserName = new TextBox();
-            pictureBox2 = new PictureBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLogo).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -54,7 +52,7 @@
             groupBox1.Controls.Add(txtNewEmail);
             groupBox1.Controls.Add(txtNewUserName);
             groupBox1.Font = new Font("Ink Free", 11.9999981F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(622, 12);
+            groupBox1.Location = new Point(12, 11);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(317, 387);
             groupBox1.TabIndex = 11;
@@ -140,24 +138,11 @@
             txtNewUserName.Size = new Size(305, 33);
             txtNewUserName.TabIndex = 3;
             // 
-            // pictureBox2
-            // 
-            pictureBox2.BackgroundImageLayout = ImageLayout.None;
-            pictureBox2.BorderStyle = BorderStyle.Fixed3D;
-            pictureBox2.Image = Properties.Resources.E_PUFNHVQAQkOHo;
-            pictureBox2.Location = new Point(12, 12);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(604, 387);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 12;
-            pictureBox2.TabStop = false;
-            // 
             // frmRegister
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.Black;
-            ClientSize = new Size(950, 410);
-            Controls.Add(pictureBox2);
+            ClientSize = new Size(339, 410);
             Controls.Add(groupBox1);
             ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -165,11 +150,11 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmRegister";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Register";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLogo).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -183,6 +168,5 @@
         private Button btnSignUp;
         private PictureBox picBoxLogo;
         private ComboBox cboxOptionalChoice;
-        private PictureBox pictureBox2;
     }
 }

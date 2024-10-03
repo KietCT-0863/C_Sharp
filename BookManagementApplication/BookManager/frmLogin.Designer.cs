@@ -62,6 +62,7 @@
             txtPassword.ForeColor = Color.White;
             txtPassword.Location = new Point(6, 193);
             txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
             txtPassword.PlaceholderText = " Password";
             txtPassword.Size = new Size(305, 33);
             txtPassword.TabIndex = 3;
@@ -78,6 +79,7 @@
             btnLogin.TabIndex = 4;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
             // picBoxLogo
             // 
@@ -181,6 +183,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)picBoxLogo).EndInit();
             groupBox1.ResumeLayout(false);

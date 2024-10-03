@@ -36,6 +36,7 @@ namespace BookManager
             {
                 UserAccountServices userAccountServices = new UserAccountServices();
                 userAccountServices.AddUser(new() { FullName = txtNewUserName.Text, Email = txtNewEmail.Text, Password = txtNewPassword.Text, Role = 3 });
+                this.Close();
 
                 //if (cboxOptionalChoice.SelectedItem == "Gawr Gura")
                 //{
