@@ -12,6 +12,11 @@ namespace Services
     {
         UserAccountRepository userRepo = new UserAccountRepository();
 
-        public void AddUser(UserAccount user) => userRepo.AddUserToDB(user);
+        public void AddUser(UserAccount user)
+        {
+            int userId = userRepo.GetUserAccountPrimaryKey();
+            user.MemberId = userId + 1;
+            userRepo.AddUserToDB(user);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Repositories.Models;
+﻿using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using Repositories.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +12,25 @@ namespace Repositories
     {
         BookManagementDbContext _context;
 
-        public List<UserAccount> GetUserAccounts()
-        {
-            _context = new ();
-            return _context.UserAccounts.ToList();
-        }
+        
 
         public void AddUserToDB(UserAccount userAccount)
         {
             _context = new();
             _context.UserAccounts.Add(userAccount);
             _context.SaveChanges();
+        }
+
+        public List<UserAccount> GetUserAccountsFromDB()
+        {
+            _context = new();
+            return _context.UserAccounts.ToList();
+        }
+
+        public int GetUserAccountPrimaryKey()
+        {
+            _context = new();
+            return _context.UserAccounts.Max(u => u.MemberId);
         }
     }
 }
