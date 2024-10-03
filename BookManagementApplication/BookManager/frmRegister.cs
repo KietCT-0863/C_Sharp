@@ -26,24 +26,53 @@ namespace BookManager
             cboxOptionalChoice.Items.Add("Watson Amelia");
             cboxOptionalChoice.Items.Add("Takanashi Kiara");
             cboxOptionalChoice.Items.Add("Mori Calliope");
-
-            //UserAccount newUser = new() { FullName = txtNewUserName.Text, Email = txtNewEmail.Text, Password = txtNewPassword.Text, Role = 3 };
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            UserAccountServices userAccountServices = new UserAccountServices();
-            userAccountServices.AddUser( new() {FullName = txtNewUserName.Text, Email = txtNewEmail.Text, Password = txtNewPassword.Text, Role = 3 } );
-
-            if (cboxOptionalChoice.SelectedItem == "Gawr Gura")
+            // Check Input Validation
+            // string.IsNullOrWhiteSpace dùng để kiểm tra xem chuỗi string đầu vào có null hay chứa only 1 khoảng trắng
+            if (!string.IsNullOrWhiteSpace(txtNewUserName.Text) && !string.IsNullOrWhiteSpace(txtNewEmail.Text) && !string.IsNullOrWhiteSpace(txtNewPassword.Text))
             {
-                this.Hide();
-                Form frmGura = new Form();
-                frmGura.ShowDialog();
-                this.Close();
-            }
+                UserAccountServices userAccountServices = new UserAccountServices();
+                userAccountServices.AddUser(new() { FullName = txtNewUserName.Text, Email = txtNewEmail.Text, Password = txtNewPassword.Text, Role = 3 });
 
-            this.Hide();
+                //if (cboxOptionalChoice.SelectedItem == "Gawr Gura")
+                //{
+                //    this.Close();
+                //    Form frmGura = new Form();
+                //    frmGura.ShowDialog();
+                //}
+                //else if (cboxOptionalChoice.SelectedItem == "Ninomae Ina'nis")
+                //{
+                //    this.Close();
+                //    Form frmGura = new Form();
+                //    frmGura.ShowDialog();
+                //}
+                //else if (cboxOptionalChoice.SelectedItem == "Watson Amelia")
+                //{
+                //    this.Close();
+                //    Form frmGura = new Form();
+                //    frmGura.ShowDialog();
+                //}
+                //else if (cboxOptionalChoice.SelectedItem == "Takanashi Kiara")
+                //{
+                //    this.Close();
+                //    Form frmGura = new Form();
+                //    frmGura.ShowDialog();
+                //}
+                //else if (cboxOptionalChoice.SelectedItem == "Mori Calliope")
+                //{
+                //    this.Close();
+                //    Form frmGura = new Form();
+                //    frmGura.ShowDialog();
+                //}
+                //else this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Input cannot be Empty", "Warning!!!");
+            }
         }
     }
 }

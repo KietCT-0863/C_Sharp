@@ -22,16 +22,10 @@ namespace TesterDB
             //    Console.WriteLine(printList[i]);
             //}
 
-
-
-
+            ////test UserServices
+            ////test AddUser
             UserAccountServices userAccountServices = new();
-
-            ////test addUser()
-            UserAccount userAccount = new() { FullName = "a", Email = "a@gmail.com", Password = "123@123", Role = 3 };
-            //userAccountServices.AddUser(userAccount);
-            userAccountServices.AddUser(userAccount, out int userId);
-            Console.WriteLine(userId);
+            userAccountServices.AddUser(new() { FullName = "a", Email = "a@gmail.com", Password = "123@123", Role = 3 });
         }
     }
 }
