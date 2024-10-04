@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BookManager
 {
-    public partial class frmMember : Form
+    public partial class frmUpdateBook : Form
     {
-        public frmMember()
+        public frmUpdateBook()
         {
             InitializeComponent();
         }

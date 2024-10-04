@@ -16,7 +16,7 @@ namespace Services
     {
         BookRepository bookRepo = new();
 
-        public List<Book> PrintAllBook() => bookRepo.GetBooksFromDB();
+        public List<Book> GetAllBook() => bookRepo.GetBooksFromDB();
         public void AddBook(Book book) => bookRepo.AddBookToDB(book);
         public void RemoveBook(Book book) => bookRepo.RemoveBookFromDB(book);
         public void UpdateBook(Book book) => bookRepo.UpdateBookFromDB(book);

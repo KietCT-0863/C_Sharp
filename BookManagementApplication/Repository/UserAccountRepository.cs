@@ -12,7 +12,6 @@ namespace Repositories
     {
         BookManagementDbContext? _context;
 
-
         public int GetUserAccountPrimaryKey()
         {
             _context = new();

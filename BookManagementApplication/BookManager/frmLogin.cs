@@ -10,14 +10,6 @@ namespace BookManager
             InitializeComponent();
         }
 
-        private void linklblRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            this.Hide();
-            frmRegister frmRegister = new frmRegister();
-            frmRegister.ShowDialog();
-            this.Show();
-        }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             UserAccountServices userAccountServices = new UserAccountServices();
@@ -54,7 +46,15 @@ namespace BookManager
             }
             else MessageBox.Show("User Name and Password cannot Empty!!!", "WARNING");
 
-            
+
+        }
+
+        private void linklblRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //this.Hide();
+            frmRegister frmregister = new frmRegister();
+            frmregister.ShowDialog();
+            this.Show();
         }
     }
 }

@@ -1,16 +1,4 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using Repositories;
-using Repositories.Models;
-using Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Services;
 
 namespace BookManager
 {
@@ -20,7 +8,7 @@ namespace BookManager
         {
             InitializeComponent();
 
-            cboxOptionalChoice.Text = "Optional Choice";
+            cboxOptionalChoice.Text = "Optional Choices";
             cboxOptionalChoice.Items.Add("Gawr Gura");
             cboxOptionalChoice.Items.Add("Ninomae Ina'nis");
             cboxOptionalChoice.Items.Add("Watson Amelia");

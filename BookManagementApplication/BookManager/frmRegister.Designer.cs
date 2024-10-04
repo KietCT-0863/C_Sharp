@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegister));
-            groupBox1 = new GroupBox();
+            panel1 = new Panel();
             cboxOptionalChoice = new ComboBox();
             picBoxLogo = new PictureBox();
             btnSignUp = new Button();
@@ -37,60 +37,58 @@
             txtNewPassword = new TextBox();
             txtNewEmail = new TextBox();
             txtNewUserName = new TextBox();
-            groupBox1.SuspendLayout();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLogo).BeginInit();
             SuspendLayout();
             // 
-            // groupBox1
+            // panel1
             // 
-            groupBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            groupBox1.Controls.Add(cboxOptionalChoice);
-            groupBox1.Controls.Add(picBoxLogo);
-            groupBox1.Controls.Add(btnSignUp);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(txtNewPassword);
-            groupBox1.Controls.Add(txtNewEmail);
-            groupBox1.Controls.Add(txtNewUserName);
-            groupBox1.Font = new Font("Ink Free", 11.9999981F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(12, 11);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(317, 387);
-            groupBox1.TabIndex = 11;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
+            panel1.Controls.Add(cboxOptionalChoice);
+            panel1.Controls.Add(picBoxLogo);
+            panel1.Controls.Add(btnSignUp);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(txtNewPassword);
+            panel1.Controls.Add(txtNewEmail);
+            panel1.Controls.Add(txtNewUserName);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(339, 410);
+            panel1.TabIndex = 0;
             // 
             // cboxOptionalChoice
             // 
-            cboxOptionalChoice.BackColor = Color.Black;
+            cboxOptionalChoice.BackColor = Color.White;
             cboxOptionalChoice.FlatStyle = FlatStyle.Popup;
-            cboxOptionalChoice.ForeColor = Color.White;
+            cboxOptionalChoice.Font = new Font("Ink Free", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cboxOptionalChoice.ForeColor = Color.Black;
             cboxOptionalChoice.FormattingEnabled = true;
-            cboxOptionalChoice.Location = new Point(6, 271);
+            cboxOptionalChoice.Location = new Point(12, 281);
             cboxOptionalChoice.Name = "cboxOptionalChoice";
-            cboxOptionalChoice.Size = new Size(128, 28);
-            cboxOptionalChoice.TabIndex = 19;
+            cboxOptionalChoice.Size = new Size(169, 34);
+            cboxOptionalChoice.TabIndex = 26;
             // 
             // picBoxLogo
             // 
             picBoxLogo.BorderStyle = BorderStyle.FixedSingle;
             picBoxLogo.Image = Properties.Resources.MythLogo;
-            picBoxLogo.Location = new Point(113, 26);
+            picBoxLogo.Location = new Point(124, 36);
             picBoxLogo.Name = "picBoxLogo";
             picBoxLogo.Size = new Size(90, 90);
             picBoxLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            picBoxLogo.TabIndex = 18;
+            picBoxLogo.TabIndex = 25;
             picBoxLogo.TabStop = false;
             // 
             // btnSignUp
             // 
-            btnSignUp.BackColor = Color.Black;
+            btnSignUp.BackColor = Color.White;
             btnSignUp.FlatStyle = FlatStyle.Flat;
             btnSignUp.Font = new Font("Ink Free", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSignUp.ForeColor = Color.Transparent;
-            btnSignUp.Location = new Point(221, 305);
+            btnSignUp.ForeColor = Color.Black;
+            btnSignUp.Location = new Point(237, 321);
             btnSignUp.Name = "btnSignUp";
             btnSignUp.Size = new Size(90, 35);
-            btnSignUp.TabIndex = 17;
+            btnSignUp.TabIndex = 24;
             btnSignUp.Text = "Sign up";
             btnSignUp.UseVisualStyleBackColor = false;
             btnSignUp.Click += btnSignUp_Click;
@@ -98,52 +96,52 @@
             // label5
             // 
             label5.Font = new Font("Ink Free", 20.25F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            label5.Location = new Point(6, 119);
+            label5.Location = new Point(12, 129);
             label5.Name = "label5";
-            label5.Size = new Size(305, 32);
-            label5.TabIndex = 16;
+            label5.Size = new Size(315, 32);
+            label5.TabIndex = 23;
             label5.Text = "Create your account";
             label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txtNewPassword
             // 
-            txtNewPassword.BackColor = Color.Black;
+            txtNewPassword.BackColor = Color.White;
             txtNewPassword.Font = new Font("Ink Free", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNewPassword.ForeColor = Color.White;
-            txtNewPassword.Location = new Point(6, 232);
+            txtNewPassword.ForeColor = Color.Black;
+            txtNewPassword.Location = new Point(12, 242);
             txtNewPassword.Name = "txtNewPassword";
             txtNewPassword.PlaceholderText = "Enter your password";
-            txtNewPassword.Size = new Size(305, 33);
-            txtNewPassword.TabIndex = 5;
+            txtNewPassword.Size = new Size(315, 33);
+            txtNewPassword.TabIndex = 22;
             // 
             // txtNewEmail
             // 
-            txtNewEmail.BackColor = Color.Black;
+            txtNewEmail.BackColor = Color.White;
             txtNewEmail.Font = new Font("Ink Free", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNewEmail.ForeColor = Color.White;
-            txtNewEmail.Location = new Point(6, 193);
+            txtNewEmail.ForeColor = Color.Black;
+            txtNewEmail.Location = new Point(12, 203);
             txtNewEmail.Name = "txtNewEmail";
             txtNewEmail.PlaceholderText = "Enter your mail";
-            txtNewEmail.Size = new Size(305, 33);
-            txtNewEmail.TabIndex = 4;
+            txtNewEmail.Size = new Size(315, 33);
+            txtNewEmail.TabIndex = 21;
             // 
             // txtNewUserName
             // 
-            txtNewUserName.BackColor = Color.Black;
+            txtNewUserName.BackColor = Color.White;
             txtNewUserName.Font = new Font("Ink Free", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNewUserName.ForeColor = Color.White;
-            txtNewUserName.Location = new Point(6, 154);
+            txtNewUserName.ForeColor = Color.Black;
+            txtNewUserName.Location = new Point(12, 164);
             txtNewUserName.Name = "txtNewUserName";
             txtNewUserName.PlaceholderText = "Enter your name";
-            txtNewUserName.Size = new Size(305, 33);
-            txtNewUserName.TabIndex = 3;
+            txtNewUserName.Size = new Size(315, 33);
+            txtNewUserName.TabIndex = 20;
             // 
             // frmRegister
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.Black;
             ClientSize = new Size(339, 410);
-            Controls.Add(groupBox1);
+            Controls.Add(panel1);
             ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -152,21 +150,21 @@
             Name = "frmRegister";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Register";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLogo).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private GroupBox groupBox1;
-        private TextBox txtNewUserName;
+        private Panel panel1;
+        private ComboBox cboxOptionalChoice;
+        private PictureBox picBoxLogo;
+        private Button btnSignUp;
+        private Label label5;
         private TextBox txtNewPassword;
         private TextBox txtNewEmail;
-        private Label label5;
-        private Button btnSignUp;
-        private PictureBox picBoxLogo;
-        private ComboBox cboxOptionalChoice;
+        private TextBox txtNewUserName;
     }
 }
