@@ -146,7 +146,6 @@
             dgvBookList.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             dgvBookList.Size = new Size(708, 449);
             dgvBookList.TabIndex = 4;
-            dgvBookList.CellContentClick += dgvBookList_CellContentClick;
             // 
             // panel1
             // 

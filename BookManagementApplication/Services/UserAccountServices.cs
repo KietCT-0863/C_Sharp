@@ -15,7 +15,7 @@ namespace Services
 
         public void AddUser(UserAccount user)
         {
-            int userId = userRepo.GetUserAccountPrimaryKey();
+            int userId = userRepo.GetUserAccountMaxPrimaryKey();
             user.MemberId = userId + 1;
             userRepo.AddUserToDB(user);
         }

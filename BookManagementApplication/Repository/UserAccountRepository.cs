@@ -12,7 +12,7 @@ namespace Repositories
     {
         BookManagementDbContext? _context;
 
-        public int GetUserAccountPrimaryKey()
+        public int GetUserAccountMaxPrimaryKey()
         {
             _context = new();
             return _context.UserAccounts.Max(u => u.MemberId);

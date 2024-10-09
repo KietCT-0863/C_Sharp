@@ -16,8 +16,14 @@ namespace Services
     {
         BookRepository bookRepo = new();
 
-        public List<Book> GetAllBook() => bookRepo.GetBooksFromDB();
-        public void AddBook(Book book) => bookRepo.AddBookToDB(book);
+        public List<Book> GetAllBook() => bookRepo.GetAllBooksFromDB();
+        public int GetBookPrimaryKey() => bookRepo.GetBookMaxPrimaryKey() + 1;
+        public void AddBook(Book book)
+        {
+            //int newBookId = bookRepo.GetBookMaxPrimaryKey() + 1;
+            //book.BookId = newBookId;
+            bookRepo.AddBookToDB(book);
+        }
         public void RemoveBook(Book book) => bookRepo.RemoveBookFromDB(book);
         public void UpdateBook(Book book) => bookRepo.UpdateBookFromDB(book);
         public List<Book> SortBookByBookTitle() => bookRepo.SortBookByTitleFromDB();

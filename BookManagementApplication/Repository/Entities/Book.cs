@@ -7,9 +7,9 @@ public partial class Book
 {
     public int BookId { get; set; }
 
-    public string BookName { get; set; } = null!;
+    public string? BookName { get; set; }
 
-    public string Description { get; set; } = null!;
+    public string? Description { get; set; }
 
     public DateTime PublicationDate { get; set; }
 
@@ -17,22 +17,11 @@ public partial class Book
 
     public double Price { get; set; }
 
-    public string Author { get; set; } = null!;
+    public string? Author { get; set; }
 
     public int BookCategoryId { get; set; }
 
     public virtual BookCategory BookCategory { get; set; } = null!;
-
-    public Book(string bookName, string description, DateTime publicationDate, int quantity, double price, string author, int bookCategoryId)
-    {
-        BookName = bookName;
-        Description = description;
-        PublicationDate = publicationDate;
-        Quantity = quantity;
-        Price = price;
-        Author = author;
-        BookCategoryId = bookCategoryId;
-    }
 
     public override string? ToString()
     {
