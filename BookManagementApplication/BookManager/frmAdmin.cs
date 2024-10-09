@@ -16,16 +16,14 @@ namespace BookManager
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnBookManagement_Click(object sender, EventArgs e)
         {
             this.Hide();
             frmBookManagement frmBookManagement = new frmBookManagement();
             frmBookManagement.ShowDialog();
             this.Show();
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void btnUserManagement_Click(object sender, EventArgs e)
         {
             this.Hide();
             frmUserAccountManagement frmUserManagement = new frmUserAccountManagement();

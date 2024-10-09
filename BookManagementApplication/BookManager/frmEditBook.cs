@@ -51,9 +51,9 @@ namespace BookManager
         {
             if (flagCheckAddOrUpdate == true)
             {
-                txtId.ReadOnly = true;
                 Book newBook = new Book()
                 {
+                    BookId = bookServices.GetBookPrimaryKey(),
                     BookName = txtTitle.Text,
                     Description = txtDescription.Text,
                     PublicationDate = Convert.ToDateTime(txtPulicationDate.Text),

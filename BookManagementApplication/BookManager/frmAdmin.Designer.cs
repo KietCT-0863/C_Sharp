@@ -94,12 +94,13 @@
             btnUserManagement.AutoSize = true;
             btnUserManagement.Font = new Font("Ink Free", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnUserManagement.ForeColor = Color.Black;
-            btnUserManagement.Location = new Point(129, 183);
+            btnUserManagement.Location = new Point(69, 181);
             btnUserManagement.Name = "btnUserManagement";
             btnUserManagement.Size = new Size(186, 36);
             btnUserManagement.TabIndex = 7;
             btnUserManagement.Text = "User Management";
             btnUserManagement.UseVisualStyleBackColor = true;
+            btnUserManagement.Click += btnUserManagement_Click;
             // 
             // btnBookManagement
             // 
@@ -112,6 +113,7 @@
             btnBookManagement.TabIndex = 6;
             btnBookManagement.Text = "Book Management";
             btnBookManagement.UseVisualStyleBackColor = true;
+            btnBookManagement.Click += btnBookManagement_Click;
             // 
             // label1
             // 
