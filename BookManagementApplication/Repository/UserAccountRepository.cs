@@ -18,6 +18,12 @@ namespace Repositories
             return _context.UserAccounts.Max(u => u.MemberId);
         }
 
+        public List<UserAccount> GetUserAllAccountsInDB()
+        {
+            _context = new();
+            return _context.UserAccounts.ToList();
+        }
+
         public void AddUserToDB(UserAccount userAccount)
         {
             _context = new();
@@ -25,11 +31,29 @@ namespace Repositories
             _context.SaveChanges();
         }
 
-        public UserAccount? GetUserAccount(string userName, string password)
+        public UserAccount? GetUserAccountInDB(string userName, string password)
         {
             _context = new();
-            // Ternary Operator : toán tử ba ngôi
             return _context.UserAccounts.FirstOrDefault(userAccount => (userAccount.FullName == userName && userAccount.Password == password) ? true : false);
+        }
+
+        public void RemoveUserAccountInDB(UserAccount userAccount)
+        {
+            _context = new();
+            _context.UserAccounts.Remove(userAccount);
+            _context.SaveChanges();
+        }
+
+        public UserAccount? SearchUserAccountInDB(int userId)
+        {
+            _context = new();
+            return _context.UserAccounts.FirstOrDefault(u => u.MemberId == userId);
+        }
+
+        public UserAccount? SearchUserAccountInDB(string userName)
+        {
+            _context = new();
+            return _context.UserAccounts.FirstOrDefault(u => u.FullName == userName);
         }
     }
 }

@@ -13,8 +13,6 @@ namespace Services
     {
         UserAccountRepository userRepo = new UserAccountRepository();
 
-        //public GetUserAccountPrimaryKey
-
         public void AddUser(UserAccount user)
         {
             int userId = userRepo.GetUserAccountPrimaryKey();
@@ -22,6 +20,31 @@ namespace Services
             userRepo.AddUserToDB(user);
         }
 
-        public UserAccount? LoginAccount(string userName, string password) => userRepo.GetUserAccount(userName, password);
+        public List<UserAccount> GetAllUserAccount() => userRepo.GetUserAllAccountsInDB();
+
+        public UserAccount? LoginAccount(string userName, string password) => userRepo.GetUserAccountInDB(userName, password);
+
+        public void RemoveUser(UserAccount userAccount)
+        {
+            userRepo.RemoveUserAccountInDB(userAccount);
+        }
+
+        public void RemoveUserAccount(int userId)
+        {
+            UserAccount? removeUser = userRepo.SearchUserAccountInDB(userId);
+            if (removeUser != null)
+            {
+                userRepo.RemoveUserAccountInDB(removeUser);
+            }
+        }
+
+        public void RemoveUserAccount(string userName)
+        {
+            UserAccount? removeUser = userRepo.SearchUserAccountInDB(userName);
+            if (removeUser != null)
+            {
+                userRepo.RemoveUserAccountInDB(removeUser);
+            }
+        }
     }
 }

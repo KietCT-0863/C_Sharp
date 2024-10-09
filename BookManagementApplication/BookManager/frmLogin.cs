@@ -36,7 +36,7 @@ namespace BookManager
                     else if (loginUser.Role == 1)
                     {
                         this.Hide();
-                        Form frmAdmin = new Form();
+                        frmAdmin frmAdmin = new frmAdmin();
                         frmAdmin.ShowDialog();
                         this.Close();
                     }
