@@ -50,11 +50,6 @@ public partial class BookManagementDbContext : DbContext
             entity.Property(e => e.BookName).HasMaxLength(100);
             entity.Property(e => e.Description).HasMaxLength(1000);
             entity.Property(e => e.PublicationDate).HasColumnType("datetime");
-
-            entity.HasOne(d => d.BookCategory).WithMany(p => p.Books)
-                .HasForeignKey(d => d.BookCategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Book_BookCategory");
         });
 
         modelBuilder.Entity<BookCategory>(entity =>

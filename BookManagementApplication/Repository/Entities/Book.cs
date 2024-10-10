@@ -20,11 +20,4 @@ public partial class Book
     public string? Author { get; set; }
 
     public int BookCategoryId { get; set; }
-
-    public virtual BookCategory BookCategory { get; set; } = null!;
-
-    public override string? ToString()
-    {
-        return $"ID : {BookId} | Title : {BookName} | Quantity : {Quantity} | Price : {Price}";
-    }
 }

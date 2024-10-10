@@ -14,70 +14,53 @@ namespace BookManager
 {
     public partial class frmBookManagement : Form
     {
+        private BookServices _bookServices = new();
+        private Book _seletedBook = null;
+
         public frmBookManagement()
         {
             InitializeComponent();
-            LoadData();
         }
 
-        private void LoadData()
+        private void frmBookManagement_Load(object sender, EventArgs e)
         {
-            BookServices bookServices = new BookServices();
-            dgvBookList.DataSource = bookServices.GetAllBook();
+            dgvBookList.DataSource = null;
+            dgvBookList.DataSource = _bookServices.GetAllBooks();
         }
 
         private void btnCreateBook_Click(object sender, EventArgs e)
         {
-            frmEditBook frmEditBook = new frmEditBook(new Book());
-            frmEditBook.ShowDialog();
-            LoadData();
+            frmBookDetail frmBookDetail = new frmBookDetail();
+            frmBookDetail.ShowDialog();
+        }
+
+        private void dgvBookList_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvBookList.SelectedRows.Count > 0)
+            {
+                _seletedBook = (Book)dgvBookList.SelectedRows[0].DataBoundItem;
+            }
         }
 
         private void btnUpdateBook_Click(object sender, EventArgs e)
         {
-            if (dgvBookList.SelectedRows.Count != 0)
+            if (_seletedBook != null)
             {
-                DataGridViewRow selectedRow = dgvBookList.SelectedRows[0];
-                Book selectedBook = new Book()
-                {
-                    BookId = Convert.ToInt32(selectedRow.Cells["BookId"].Value.ToString()),
-                    BookName = selectedRow.Cells["BookName"].Value.ToString(),
-                    Description = selectedRow.Cells["Description"].Value.ToString(),
-                    PublicationDate = Convert.ToDateTime(selectedRow.Cells["PublicationDate"].Value.ToString()),
-                    Quantity = Convert.ToInt32(selectedRow.Cells["Quantity"].Value.ToString()),
-                    Price = Convert.ToDouble(selectedRow.Cells["price"].Value),
-                    Author = selectedRow.Cells["Author"].Value.ToString(),
-                    BookCategoryId = Convert.ToInt32(selectedRow.Cells["BookCategoryId"].Value.ToString())
-                };
-
-                frmEditBook frmEditBook = new frmEditBook(selectedBook);
-                frmEditBook.ShowDialog();
-                LoadData();
+                frmBookDetail frmBookDetail = new frmBookDetail();
+                frmBookDetail.SelectedBook = _seletedBook;
+                frmBookDetail.ShowDialog();
+                _seletedBook = null;
             }
             else
-                MessageBox.Show("Please choise one!!!", "Warning");
+                MessageBox.Show("Please SELECT a Book!!!", "Select one Book", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void btnRemoveBook_Click(object sender, EventArgs e)
         {
-            //frmEditBook frmEditBook = new frmEditBook();
-            //frmEditBook.ShowDialog();
-            DataGridViewRow selectedRow = dgvBookList.SelectedRows[0];
-            Book selectedBook = new Book()
-            {
-                BookId = Convert.ToInt32(selectedRow.Cells["BookId"].Value.ToString()),
-                BookName = selectedRow.Cells["BookName"].Value.ToString(),
-                Description = selectedRow.Cells["Description"].Value.ToString(),
-                PublicationDate = Convert.ToDateTime(selectedRow.Cells["PublicationDate"].Value.ToString()),
-                Quantity = Convert.ToInt32(selectedRow.Cells["Quantity"].Value.ToString()),
-                Price = Convert.ToDouble(selectedRow.Cells["price"].Value),
-                Author = selectedRow.Cells["Author"].Value.ToString(),
-                BookCategoryId = Convert.ToInt32(selectedRow.Cells["BookCategoryId"].Value.ToString())
-            };
-            BookServices bookServices = new BookServices();
-            bookServices.RemoveBook(selectedBook);
-            LoadData();
+            //Book selectedBook = (Book)dgvBookList.SelectedRows[0].DataBoundItem;
+            //_bookServices.RemoveBook(selectedBook);
         }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
