@@ -47,11 +47,13 @@ namespace BookManager
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            txtBookId.Enabled = false;
+
             if (SelectedBook == null)
             {
                 Book newBook = new()
                 {
-
+                    
                 };
                 _bookServices.AddBook(newBook);
             }
@@ -59,14 +61,14 @@ namespace BookManager
             {
                 Book updateBook = new()
                 {
-                    //BookId = Convert.ToInt32(txtBookId.Text),
-                    //BookName = txtTitle.Text,
-                    //Description = txtDescription.Text,
-                    //PublicationDate = Convert.ToDateTime(dtpPubicationDate.Value),
-                    //Quantity = Convert.ToInt32(txtQuantity.Text),
-                    //Price = Convert.ToDouble(txtPrice.Text),
-                    //Author = txtAuthor.Text,
-                    //BookCategoryId = Convert.ToInt32(cboBookCategoryId.ValueMember)
+                    BookId = Convert.ToInt32(txtBookId.Text),
+                    BookName = txtTitle.Text,
+                    Description = txtDescription.Text,
+                    PublicationDate = Convert.ToDateTime(dtpPubicationDate.Value),
+                    Quantity = Convert.ToInt32(txtQuantity.Text),
+                    Price = Convert.ToDouble(txtPrice.Text),
+                    Author = txtAuthor.Text,
+                    BookCategoryId = Convert.ToInt32(cboBookCategoryId.SelectedValue)
                 };
                 _bookServices.UpdateBook(updateBook);
             }

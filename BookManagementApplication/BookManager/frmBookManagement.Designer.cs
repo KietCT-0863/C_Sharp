@@ -242,6 +242,7 @@
             btnSearchBook.TabIndex = 2;
             btnSearchBook.Text = "Search";
             btnSearchBook.UseVisualStyleBackColor = true;
+            btnSearchBook.Click += btnSearchBook_Click;
             // 
             // lblBookDescription
             // 
@@ -307,7 +308,6 @@
             Name = "frmBookManagement";
             Text = "Book Management";
             WindowState = FormWindowState.Maximized;
-            Load += frmBookManagement_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLogo).EndInit();

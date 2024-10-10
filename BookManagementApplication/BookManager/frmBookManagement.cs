@@ -20,18 +20,21 @@ namespace BookManager
         public frmBookManagement()
         {
             InitializeComponent();
+            LoadData();
         }
 
-        private void frmBookManagement_Load(object sender, EventArgs e)
+        private void LoadData()
         {
             dgvBookList.DataSource = null;
             dgvBookList.DataSource = _bookServices.GetAllBooks();
         }
 
-        private void btnCreateBook_Click(object sender, EventArgs e)
+        private void btnSearchBook_Click(object sender, EventArgs e)
         {
-            frmBookDetail frmBookDetail = new frmBookDetail();
-            frmBookDetail.ShowDialog();
+            string nameSearch = txtBookNameSearch.Text;
+            string descriptionSearch = txtBookDescriptionSearch.Text;
+            dgvBookList.DataSource = null;
+            dgvBookList.DataSource = _bookServices.SearchBook(nameSearch);
         }
 
         private void dgvBookList_SelectionChanged(object sender, EventArgs e)
@@ -42,6 +45,12 @@ namespace BookManager
             }
         }
 
+        private void btnCreateBook_Click(object sender, EventArgs e)
+        {
+            frmBookDetail frmBookDetail = new frmBookDetail();
+            frmBookDetail.ShowDialog();
+        }
+
         private void btnUpdateBook_Click(object sender, EventArgs e)
         {
             if (_seletedBook != null)
@@ -49,6 +58,7 @@ namespace BookManager
                 frmBookDetail frmBookDetail = new frmBookDetail();
                 frmBookDetail.SelectedBook = _seletedBook;
                 frmBookDetail.ShowDialog();
+                LoadData();
                 _seletedBook = null;
             }
             else
@@ -57,8 +67,14 @@ namespace BookManager
 
         private void btnRemoveBook_Click(object sender, EventArgs e)
         {
-            //Book selectedBook = (Book)dgvBookList.SelectedRows[0].DataBoundItem;
-            //_bookServices.RemoveBook(selectedBook);
+            if (_seletedBook != null)
+            {
+                Book selectedBook = (Book)dgvBookList.SelectedRows[0].DataBoundItem;
+                _bookServices.RemoveBook(selectedBook);
+                LoadData();
+                _seletedBook = null;
+            }
+            else MessageBox.Show("Please SELECT a Book!!!", "Select one Book", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void btnBack_Click(object sender, EventArgs e)

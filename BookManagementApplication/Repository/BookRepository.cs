@@ -24,11 +24,6 @@ namespace Repositories
             _context = new();
             return _context.Books.ToList();
         }
-        public int GetBookMaxPrimaryKey()
-        {
-            _context = new();
-            return _context.Books.Max(b => b.BookId);
-        }
         public void UpdateBookFromDB(Book newBook)
         {
             _context = new();
@@ -40,11 +35,6 @@ namespace Repositories
             _context = new();
             _context.Books.Remove(book);
             _context.SaveChanges();
-        }
-        public List<Book> SortBookByTitleFromDB()
-        {
-            _context = new();
-            return _context.Books.OrderBy(b => b.BookName).ToList();
         }
     }
 }
