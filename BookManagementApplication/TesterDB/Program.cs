@@ -1,4 +1,5 @@
-﻿using Repositories;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Repositories;
 using Repositories.Models;
 using Services;
 
@@ -8,7 +9,7 @@ namespace TesterDB
     {
         static void Main(string[] args)
         {
-
+            BookServices bookServices = new BookServices();
         }
     }
 }

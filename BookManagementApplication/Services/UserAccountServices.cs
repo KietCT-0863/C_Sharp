@@ -11,39 +11,47 @@ namespace Services
 {
     public class UserAccountServices
     {
-        UserAccountRepository userRepo = new UserAccountRepository();
+        private UserAccountRepository _userRepo = new UserAccountRepository();
+        private List<UserAccount> _listUser = null;
 
         public void AddUser(UserAccount user)
         {
-            int userId = userRepo.GetUserAccountMaxPrimaryKey();
-            user.MemberId = userId + 1;
-            userRepo.AddUserToDB(user);
+            user.MemberId = GetNewUserId();
+            _userRepo.AddUserToDB(user);
         }
-
-        public List<UserAccount> GetAllUserAccount() => userRepo.GetUserAllAccountsInDB();
-
-        public UserAccount? LoginAccount(string userName, string password) => userRepo.GetUserAccountInDB(userName, password);
-
-        public void RemoveUser(UserAccount userAccount)
+        private List<UserAccount> GetAllUser() => _listUser = _userRepo.GetUserAllInDB();
+        public UserAccount? CheckUserNameExist(string userName)
         {
-            userRepo.RemoveUserAccountInDB(userAccount);
+            _listUser = GetAllUser();
+            return _listUser.FirstOrDefault(u => (u.FullName == userName) ? true : false);
         }
-
-        public void RemoveUserAccount(int userId)
+        public int GetNewUserId()
         {
-            UserAccount? removeUser = userRepo.SearchUserAccountInDB(userId);
+            _listUser = GetAllUser();
+            return _listUser.Max(u => u.MemberId) + 1;
+        }
+        public UserAccount? LoginAccount(string userName, string password)
+        {
+            _listUser = GetAllUser();
+            return _listUser.FirstOrDefault(userAccount => (userAccount.FullName == userName && userAccount.Password == password) ? true : false);
+        }
+        public void RemoveUser(UserAccount userAccount) => _userRepo.RemoveUserInDB(userAccount);
+        public void RemoveUser(int userId)
+        {
+            _listUser = GetAllUser();
+            UserAccount? removeUser = _listUser.FirstOrDefault(u => u.MemberId == userId);
             if (removeUser != null)
             {
-                userRepo.RemoveUserAccountInDB(removeUser);
+                _userRepo.RemoveUserInDB(removeUser);
             }
         }
-
-        public void RemoveUserAccount(string userName)
+        public void RemoveUser(string userName)
         {
-            UserAccount? removeUser = userRepo.SearchUserAccountInDB(userName);
+            _listUser = GetAllUser();
+            UserAccount? removeUser = _listUser.FirstOrDefault(u => u.FullName == userName);
             if (removeUser != null)
             {
-                userRepo.RemoveUserAccountInDB(removeUser);
+                _userRepo.RemoveUserInDB(removeUser);
             }
         }
     }

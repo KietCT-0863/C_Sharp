@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Services\Services.csproj">
+    <ProjectReference Include="..\Services\BookManagement.BLL.csproj">
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>

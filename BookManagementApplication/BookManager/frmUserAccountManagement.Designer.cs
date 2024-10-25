@@ -72,12 +72,12 @@
             // dgvUserAccount
             // 
             dgvUserAccount.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUserAccount.Location = new Point(394, 133);
+            dgvUserAccount.Location = new Point(243, 60);
             dgvUserAccount.Name = "dgvUserAccount";
-            dgvUserAccount.Size = new Size(240, 150);
+            dgvUserAccount.Size = new Size(474, 324);
             dgvUserAccount.TabIndex = 3;
             // 
-            // frmUserManagement
+            // frmUserAccountManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -87,7 +87,7 @@
             Controls.Add(btnUpdateAccount);
             Controls.Add(btnCreateAccount);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "frmUserManagement";
+            Name = "frmUserAccountManagement";
             Text = "User Management";
             ((System.ComponentModel.ISupportInitialize)dgvUserAccount).EndInit();
             ResumeLayout(false);

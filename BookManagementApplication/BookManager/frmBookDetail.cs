@@ -25,9 +25,10 @@ namespace BookManager
         {
             InitializeComponent();
         }
-
         private void frmBookDetail_Load(object sender, EventArgs e)
         {
+            _bookServices.GetAllBooks();
+
             cboBookCategoryId.DataSource = _bookCateServ.GetAllBookCategories();
             cboBookCategoryId.DisplayMember = "BookGenreType";
             cboBookCategoryId.ValueMember = "BookCategoryId";
@@ -43,17 +44,24 @@ namespace BookManager
                 txtAuthor.Text = SelectedBook.Author;
                 cboBookCategoryId.SelectedValue = SelectedBook.BookCategoryId;
             }
+            else
+                txtBookId.Text = _bookServices.GetNewBookId().ToString();
+            txtBookId.Enabled = false;
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
-            txtBookId.Enabled = false;
-
             if (SelectedBook == null)
             {
                 Book newBook = new()
                 {
-                    
+                    BookId = Convert.ToInt32(txtBookId.Text),
+                    BookName = txtTitle.Text,
+                    Description = txtDescription.Text,
+                    PublicationDate = dtpPubicationDate.Value,
+                    Quantity = Convert.ToInt32(txtQuantity.Text),
+                    Price = Convert.ToDouble(txtPrice.Text),
+                    Author = txtAuthor.Text,
+                    BookCategoryId = Convert.ToInt32(cboBookCategoryId.SelectedValue)
                 };
                 _bookServices.AddBook(newBook);
             }

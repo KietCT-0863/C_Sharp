@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CoverLogo.ico" />
+    <None Remove="E_PUFNHVQAQkOHo.jpg" />
+    <None Remove="MythLogo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Services\BookManagement.BLL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="CoverLogo.ico" />
+    <Resource Include="E_PUFNHVQAQkOHo.jpg" />
+    <Resource Include="MythLogo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

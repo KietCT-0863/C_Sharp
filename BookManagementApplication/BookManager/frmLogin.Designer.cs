@@ -132,7 +132,6 @@
             linklblRegister.TabIndex = 40;
             linklblRegister.TabStop = true;
             linklblRegister.Text = "Sign Up";
-            linklblRegister.LinkClicked += linklblRegister_LinkClicked;
             // 
             // txtPassword
             // 

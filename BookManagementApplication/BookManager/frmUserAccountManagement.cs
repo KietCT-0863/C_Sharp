@@ -17,7 +17,7 @@ namespace BookManager
         {
             InitializeComponent();
             UserAccountServices userServ = new UserAccountServices();
-            dgvUserAccount.DataSource = userServ.GetAllUserAccount();
+            dgvUserAccount.DataSource = userServ.GetAllUser();
         }
 
         private void btnCreateAccount_Click(object sender, EventArgs e)
