@@ -19,17 +19,20 @@ namespace Repositories
             _context.Books.Add(newBook);
             _context.SaveChanges();
         }
+
         public List<Book> GetBooksFromDB()
         {
             _context = new();
             return _context.Books.ToList();
         }
+
         public void UpdateBookFromDB(Book newBook)
         {
             _context = new();
             _context.Books.Update(newBook);
             _context.SaveChanges();
         }
+
         public void RemoveBookFromDB(Book book)
         {
             _context = new();

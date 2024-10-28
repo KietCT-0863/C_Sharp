@@ -19,7 +19,7 @@ namespace Services
             user.MemberId = GetNewUserId();
             _userRepo.AddUserToDB(user);
         }
-        private List<UserAccount> GetAllUser() => _listUser = _userRepo.GetUserAllInDB();
+        public List<UserAccount> GetAllUser() => _listUser = _userRepo.GetUserAllInDB();
         public UserAccount? CheckUserNameExist(string userName)
         {
             _listUser = GetAllUser();

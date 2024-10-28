@@ -22,47 +22,63 @@ namespace BookManagerWindow
     public partial class BookManagementWindow : Window
     {
         BookServices _bookServices = new();
-        Book _selectedBook = null;
+        Book? _selectedBook = null;
 
         public BookManagementWindow()
         {
             InitializeComponent();
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             BookListDataGrid.ItemsSource = null;
-            BookListDataGrid.ItemsSource = _bookServices.BookList;
+            BookListDataGrid.ItemsSource = _bookServices.GetAllBooks();
         }
 
         private void CreateBookButton_Click(object sender, RoutedEventArgs e)
         {
-            
             BookDetailWindow bookDetailWindow = new();
             bookDetailWindow.ShowDialog();
             Window_Loaded(sender, e);
         }
+
         private void DeleteBookButton_Click(object sender, RoutedEventArgs e)
         {
+            if (_selectedBook == null)
+            {
+                MessageBox.Show("You need to choice ONE before Delete!!!", "Selected one", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            MessageBoxResult result = MessageBox.Show("Do you realy want to DELETE this book?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+            _bookServices.RemoveBook(_selectedBook);
+            MessageBox.Show("Success!!!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            Window_Loaded(sender, e);
         }
+
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            int result = Convert.ToInt32(MessageBox.Show("Do you realy want to go BACK?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question));
-            if (result == 6)
+            MessageBoxResult result = MessageBox.Show("Do you realy want to go BACK?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
             {
                 this.Close();
             }
         }
+
         private void SearchBookButton_Click(object sender, RoutedEventArgs e)
         {
             string titleSearch = TitleText.Text;
             string descriptionSearch = DescriptionText.Text;
-            List<Book> listBookFound = _bookServices.SearchBook(titleSearch, descriptionSearch, _bookServices.BookList);
+            List<Book> listBookFound = _bookServices.SearchBook(titleSearch, descriptionSearch, _bookServices.GetAllBooks());
 
             if (listBookFound.Count < 1)
             {
-                int result = Convert.ToInt32(MessageBox.Show("A book doesn't exist!\nDo you want to create one?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Information));
-                if (result == 6)
+                MessageBoxResult result = MessageBox.Show("A book doesn't exist!\nDo you want to create one?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                if (result == MessageBoxResult.Yes)
                 {
                     BookDetailWindow bookDetailWindow = new BookDetailWindow();
                     bookDetailWindow.ShowDialog();
@@ -71,36 +87,41 @@ namespace BookManagerWindow
                 {
                     RefreshButton_Click(sender, e);
                 }
+                return;
             }
+
             else
             {
                 BookListDataGrid.ItemsSource = null;
                 BookListDataGrid.ItemsSource = listBookFound;
             }
         }
+
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             TitleText.Text = "";
             DescriptionText.Text = "";
             Window_Loaded(sender, e);
         }
+
         private void UpdateBookButton_Click(object sender, RoutedEventArgs e)
         {
-            int i = 0;
-            if (_selectedBook != null)
+            if (_selectedBook == null)
             {
-                BookDetailWindow bookDetailWindow = new();
-                bookDetailWindow.SelectedBook = _selectedBook;
-                bookDetailWindow.ShowDialog();
+                MessageBox.Show("You need to choice ONE before Update!!!", "Selected one", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
-            else
-                MessageBox.Show("You need to choice ONE!!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            BookDetailWindow bookDetailWindow = new();
+            bookDetailWindow.SelectedBook = _selectedBook;
+            bookDetailWindow.ShowDialog();
         }
+
         private void BookListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (BookListDataGrid.SelectedItems.Count > 0)
             {
-                _selectedBook = (Book)BookListDataGrid.SelectedItems[0];
+                _selectedBook = BookListDataGrid.SelectedItems[0] as Book;
             }
         }
     }

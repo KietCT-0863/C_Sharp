@@ -8,8 +8,8 @@
     <Grid>
         <Image Margin="20,104,420,14" Source="/E_PUFNHVQAQkOHo.jpg" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Stretch="Fill"/>
         <Rectangle Margin="0,24,20,20" Stroke="White" RadiusX="20" RadiusY="20" HorizontalAlignment="Right" Width="380"/>
-        <TextBox x:Name="UserNameText" TextWrapping="Wrap" Margin="0,214,40,0" FontSize="20" FontFamily="Ink Free" HorizontalAlignment="Right" Width="340" Height="30" VerticalAlignment="Top" Foreground="Gray" Text="User Name" LostFocus="UserNameText_LostFocus" GotFocus="UserNameText_GotFocus"/>
-        <TextBox x:Name="PasswordText" TextWrapping="Wrap" Margin="0,254,40,0" FontSize="20" FontFamily="Ink Free" HorizontalAlignment="Right" Width="340" Height="30" VerticalAlignment="Top" Foreground="Gray" Text="Password" LostFocus="PasswordText_LostFocus" GotFocus="PasswordText_GotFocus"/>
+        <TextBox x:Name="UserNameText" TextWrapping="Wrap" Margin="0,214,40,0" Text="User Name" FontSize="20" FontFamily="Ink Free" HorizontalAlignment="Right" Width="340" Height="30" VerticalAlignment="Top" Foreground="Gray" GotFocus="UserNameText_GotFocus" LostFocus="UserNameText_LostFocus"/>
+        <TextBox x:Name="PasswordText" TextWrapping="Wrap" Margin="0,254,40,0" Text="Password" FontSize="20" FontFamily="Ink Free" HorizontalAlignment="Right" Width="340" Height="30" VerticalAlignment="Top" Foreground="Gray" GotFocus="PasswordText_GotFocus" LostFocus="PasswordText_LostFocus"/>
         <Button x:Name="btnLogin" Content="Login" Margin="0,294,40,0" HorizontalAlignment="Right" Width="340" Height="30" VerticalAlignment="Top" FontSize="20" FontFamily="Ink free" Click="btnLogin_Click"/>
         <Label Content="Welcome Back" Margin="0,145,40,0" HorizontalContentAlignment="Center" FontSize="40" FontWeight="ExtraBold" FontFamily="Ink Free" HorizontalAlignment="Right" Width="340" Height="49" VerticalAlignment="Top"/>
         <Label Content="Don't have an account?" Margin="0,0,160,35" HorizontalAlignment="Right" Width="220" FontSize="20" FontFamily="Ink Free" RenderTransformOrigin="0.5,1" Height="30" VerticalAlignment="Bottom"/>

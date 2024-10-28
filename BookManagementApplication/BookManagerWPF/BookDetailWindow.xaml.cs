@@ -30,12 +30,12 @@ namespace BookManagerWindow
         {
             InitializeComponent();
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //CategoryComboBox.DataContext = _bookCategoryService.GetAllBookCategories();
-            //CategoryComboBox.DisplayMemberPath = "BookGenreType";
             CategoryComboBox.ItemsSource = _bookCategoryService.GetAllBookCategories();
-
+            CategoryComboBox.DisplayMemberPath = "BookGenreType";
+            CategoryComboBox.SelectedValue = "BookCategoryId";
 
             if (SelectedBook != null)
             {
@@ -47,17 +47,16 @@ namespace BookManagerWindow
                 QuantityText.Text = SelectedBook.Quantity.ToString();
                 PriceText.Text = SelectedBook.Price.ToString();
                 AuthorText.Text = SelectedBook.Author;
-                CategoryComboBox.ItemsSource = SelectedBook.BookCategoryId.ToString();
+                CategoryComboBox.SelectedValue = SelectedBook.BookCategoryId; 
             }
             else
             {
                 HeaderLabel.Content = "Create book";
-                _bookService.GetAllBooks();
                 BookIdText.Text = _bookService.GetNewBookId().ToString();
             }
-
             BookIdText.IsEnabled = false;
         }
+
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedBook == null)
@@ -71,6 +70,7 @@ namespace BookManagerWindow
                 MessageBox.Show("Update Book", "Information", MessageBoxButton.OK);
             }
         }
+
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

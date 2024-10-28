@@ -10,8 +10,8 @@ namespace Services
 {
     public class BookCategoryServices
     {
-        private BookCategoryRepository bookCateRepo = new();
+        private BookCategoryRepository _bookCateRepo = new();
 
-        public List<BookCategory> GetAllBookCategories() => bookCateRepo.GetBookCategories();
+        public List<BookCategory> GetAllBookCategories() => _bookCateRepo.GetBookCategories();
     }
 }

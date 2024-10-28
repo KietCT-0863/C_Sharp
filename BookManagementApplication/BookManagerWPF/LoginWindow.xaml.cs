@@ -24,6 +24,33 @@ namespace BookManagerWPF
         {
             InitializeComponent();
         }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            if (UserNameText.Foreground == Brushes.Gray || PasswordText.Foreground == Brushes.Gray)
+            {
+                MessageBox.Show("User Name and Password cant be Empty!!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (_accountServices.LoginAccount(UserNameText.Text, PasswordText.Text) == null)
+            {
+                MessageBox.Show("Wrong User name or Password!!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            this.Hide();
+            BookManagementWindow bookManagementWindow = new();
+            bookManagementWindow.ShowDialog();
+            this.Show();
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterWindow registerWindow = new();
+            registerWindow.ShowDialog();
+        }
+
         private void UserNameText_GotFocus(object sender, RoutedEventArgs e)
         {
             if (UserNameText.Text == "User Name")
@@ -32,6 +59,7 @@ namespace BookManagerWPF
                 UserNameText.Foreground = Brushes.White;
             }
         }
+
         private void UserNameText_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(UserNameText.Text))
@@ -40,6 +68,7 @@ namespace BookManagerWPF
                 UserNameText.Foreground = Brushes.Gray;
             }
         }
+
         private void PasswordText_GotFocus(object sender, RoutedEventArgs e)
         {
             if (PasswordText.Text == "Password")
@@ -48,6 +77,7 @@ namespace BookManagerWPF
                 PasswordText.Foreground = Brushes.White;
             }
         }
+
         private void PasswordText_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(PasswordText.Text))
@@ -55,25 +85,6 @@ namespace BookManagerWPF
                 PasswordText.Text = "Password";
                 PasswordText.Foreground = Brushes.Gray;
             }
-        }
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            if (_accountServices.LoginAccount(UserNameText.Text, PasswordText.Text) != null)
-            {
-                this.Hide();
-                BookManagementWindow bookManagementWindow = new();
-                bookManagementWindow.ShowDialog();
-                this.Show();
-            }
-            else
-            {
-                MessageBox.Show("Wrong User name or Password!!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
-        {
-            RegisterWindow registerWindow = new();
-            registerWindow.ShowDialog();
         }
     }
 }

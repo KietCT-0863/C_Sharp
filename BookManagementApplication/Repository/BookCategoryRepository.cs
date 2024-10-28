@@ -9,7 +9,7 @@ namespace Repositories
 {
     public class BookCategoryRepository
     {
-        private BookManagementDbContext _context;
+        private BookManagementDbContext? _context;
 
         public List<BookCategory> GetBookCategories()
         {
