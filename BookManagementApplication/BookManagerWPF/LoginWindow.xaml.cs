@@ -27,22 +27,29 @@ namespace BookManagerWPF
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            if (!CheckWatermark())
+            {
+                if (_accountServices.LoginAccount(UserNameText.Text, PasswordText.Text) == null)
+                {
+                    MessageBox.Show("Wrong User name or Password!!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                this.Hide();
+                BookManagementWindow bookManagementWindow = new();
+                bookManagementWindow.ShowDialog();
+                this.Show();
+            }
+        }
+
+        private bool CheckWatermark()
+        {
             if (UserNameText.Foreground == Brushes.Gray || PasswordText.Foreground == Brushes.Gray)
             {
                 MessageBox.Show("User Name and Password cant be Empty!!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                return true;
             }
-
-            if (_accountServices.LoginAccount(UserNameText.Text, PasswordText.Text) == null)
-            {
-                MessageBox.Show("Wrong User name or Password!!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            this.Hide();
-            BookManagementWindow bookManagementWindow = new();
-            bookManagementWindow.ShowDialog();
-            this.Show();
+            return false;
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
