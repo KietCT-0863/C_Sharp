@@ -51,10 +51,12 @@ namespace BookManagerWindow
             }
 
             MessageBoxResult result = MessageBox.Show("Do you realy want to DELETE this book?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
             if (result == MessageBoxResult.No)
             {
                 return;
             }
+
             _bookServices.RemoveBook(_selectedBook);
             MessageBox.Show("Success!!!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             Window_Loaded(sender, e);
@@ -63,6 +65,7 @@ namespace BookManagerWindow
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Do you realy want to go BACK?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
             if (result == MessageBoxResult.Yes)
             {
                 this.Close();
@@ -83,13 +86,8 @@ namespace BookManagerWindow
                     BookDetailWindow bookDetailWindow = new BookDetailWindow();
                     bookDetailWindow.ShowDialog();
                 }
-                else
-                {
-                    RefreshButton_Click(sender, e);
-                }
-                return;
+                RefreshButton_Click(sender, e);
             }
-
             else
             {
                 BookListDataGrid.ItemsSource = null;

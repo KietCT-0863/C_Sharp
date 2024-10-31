@@ -12,4 +12,9 @@ public partial class BookCategory
     public string Description { get; set; } = null!;
 
     public virtual ICollection<Book> Books { get; set; } = new List<Book>();
+
+    public override string ToString()
+    {
+        return BookCategoryId + "";
+    }
 }

@@ -21,10 +21,12 @@ namespace BookManagerWindow
     /// </summary>
     public partial class BookDetailWindow : Window
     {
+        // NOTE CHECK INPUT VALIDATION
+
         BookServices _bookService = new();
         BookCategoryServices _bookCategoryService = new();
 
-        public Book? SelectedBook { get; set; } = null;
+        public Book? SelectedBook { get; set; }
 
         public BookDetailWindow()
         {
@@ -47,13 +49,14 @@ namespace BookManagerWindow
                 QuantityText.Text = SelectedBook.Quantity.ToString();
                 PriceText.Text = SelectedBook.Price.ToString();
                 AuthorText.Text = SelectedBook.Author;
-                CategoryComboBox.SelectedValue = SelectedBook.BookCategoryId; 
+                CategoryComboBox.SelectedValue = SelectedBook.BookCategoryId;
             }
             else
             {
                 HeaderLabel.Content = "Create book";
                 BookIdText.Text = _bookService.GetNewBookId().ToString();
             }
+
             BookIdText.IsEnabled = false;
         }
 
@@ -61,13 +64,33 @@ namespace BookManagerWindow
         {
             if (SelectedBook == null)
             {
-                MessageBox.Show("Add new Book", "Information", MessageBoxButton.OK);
+                Book newBook = new();
+                newBook.BookId = Convert.ToInt32(BookIdText.Text);
+                newBook.BookName = TitleText.Text;
+                newBook.Description = DescriptionText.Text;
+                newBook.PublicationDate = DateTime.Parse(PublicationDatePicker.Text);
+                newBook.Quantity = Convert.ToInt32(QuantityText.Text);
+                newBook.Price = Convert.ToDouble(PriceText.Text);
+                newBook.Author = AuthorText.Text;
+                newBook.BookCategoryId = Convert.ToInt32(CategoryComboBox.SelectedValue.ToString());
+                _bookService.AddBook(newBook);
+                MessageBox.Show("Create book Success!!!", "Information", MessageBoxButton.OK);
                 this.Close();
             }
-            if (SelectedBook != null)
+            else
             {
-                //bookService.UpdateBook(SelectedBook);
-                MessageBox.Show("Update Book", "Information", MessageBoxButton.OK);
+                Book updateBook = new();
+                updateBook.BookId = Convert.ToInt32(BookIdText.Text);
+                updateBook.BookName = TitleText.Text;
+                updateBook.Description = DescriptionText.Text;
+                updateBook.PublicationDate = DateTime.Parse(PublicationDatePicker.Text);
+                updateBook.Quantity = Convert.ToInt32(QuantityText.Text);
+                updateBook.Price = Convert.ToDouble(PriceText.Text);
+                updateBook.Author = AuthorText.Text;
+                updateBook.BookCategoryId = Convert.ToInt32(CategoryComboBox.SelectedValue.ToString());
+                _bookService.UpdateBook(updateBook);
+                MessageBox.Show("Update book Success!!!", "Information", MessageBoxButton.OK);
+                this.Close();
             }
         }
 
