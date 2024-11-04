@@ -32,5 +32,6 @@
         <Button x:Name="DeleteBookButton" Content="Delete a Book" HorizontalAlignment="Left" Margin="39,365,0,0" FontFamily="ink free" FontSize="20" Width="141" Height="39" VerticalAlignment="Top" Click="DeleteBookButton_Click"/>
         <Button x:Name="GoBackButton" Content="Go back" HorizontalAlignment="Left" Margin="40,0,0,36" FontFamily="ink free" FontSize="20" Width="140" Height="29" VerticalAlignment="Bottom" Click="GoBackButton_Click"/>
         <Button x:Name="RefreshButton" Content="Refresh" Margin="0,120,40,0" VerticalAlignment="Top" FontSize="20" FontFamily="ink free" HorizontalAlignment="Right" Width="120" Click="RefreshButton_Click"/>
+        <Label x:Name="UserLabel" Content="Hello, user" Margin="0,74,24,535" Width="auto" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

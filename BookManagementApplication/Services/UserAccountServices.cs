@@ -19,36 +19,42 @@ namespace Services
             user.MemberId = GetNewUserId();
             _userRepo.AddUserToDB(user);
         }
-        public List<UserAccount> GetAllUser() => _listUser = _userRepo.GetUserAllInDB();
-        public UserAccount? CheckUserNameExist(string userName)
+
+        public List<UserAccount> GetAllUser() => _listUser = _userRepo.GetAllUserInDB();
+
+        public UserAccount? CheckUserExist(string userEmail)
         {
             _listUser = GetAllUser();
-            return _listUser.FirstOrDefault(u => (u.FullName == userName) ? true : false);
+            return _listUser.FirstOrDefault(u => (u.Email == userEmail));
         }
+
         public int GetNewUserId()
         {
             _listUser = GetAllUser();
             return _listUser.Max(u => u.MemberId) + 1;
         }
-        public UserAccount? LoginAccount(string userName, string password)
+
+        public UserAccount? LoginAccount(string userEmail, string userPassword)
         {
-            _listUser = GetAllUser();
-            return _listUser.FirstOrDefault(userAccount => (userAccount.FullName == userName && userAccount.Password == password) ? true : false);
+            return _userRepo.GetOneUserInDb(userEmail, userPassword);
         }
+
         public void RemoveUser(UserAccount userAccount) => _userRepo.RemoveUserInDB(userAccount);
+
         public void RemoveUser(int userId)
         {
-            _listUser = GetAllUser();
-            UserAccount? removeUser = _listUser.FirstOrDefault(u => u.MemberId == userId);
+            UserAccount? removeUser = _userRepo.GetUserById(userId);
+
             if (removeUser != null)
             {
                 _userRepo.RemoveUserInDB(removeUser);
             }
         }
+
         public void RemoveUser(string userName)
         {
-            _listUser = GetAllUser();
-            UserAccount? removeUser = _listUser.FirstOrDefault(u => u.FullName == userName);
+            UserAccount? removeUser = _userRepo.GetUserByName(userName);
+
             if (removeUser != null)
             {
                 _userRepo.RemoveUserInDB(removeUser);

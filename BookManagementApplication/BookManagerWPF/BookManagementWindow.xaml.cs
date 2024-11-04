@@ -24,6 +24,8 @@ namespace BookManagerWindow
         BookServices _bookServices = new();
         Book? _selectedBook = null;
 
+        public UserAccount? LoginUserAccount { get; set; }
+
         public BookManagementWindow()
         {
             InitializeComponent();
@@ -33,6 +35,14 @@ namespace BookManagerWindow
         {
             BookListDataGrid.ItemsSource = null;
             BookListDataGrid.ItemsSource = _bookServices.GetAllBooks();
+            UserLabel.Content = "Welcome back " + LoginUserAccount.FullName;
+
+            if (LoginUserAccount.Role == 2)
+            {
+                CreateBookButton.IsEnabled = false;
+                UpdateBookButton.IsEnabled = false;
+                DeleteBookButton.IsEnabled = false;
+            }
         }
 
         private void CreateBookButton_Click(object sender, RoutedEventArgs e)
@@ -68,6 +78,7 @@ namespace BookManagerWindow
 
             if (result == MessageBoxResult.Yes)
             {
+                //Application.Current.Shutdown();
                 this.Close();
             }
         }

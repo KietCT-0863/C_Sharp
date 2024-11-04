@@ -22,27 +22,48 @@ namespace BookManagerWindow
     /// </summary>
     public partial class RegisterWindow : Window
     {
-        UserAccountServices userServices = new();
+        UserAccountServices _userServices = new();
+
         public RegisterWindow()
         {
             InitializeComponent();
         }
+
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
-            UserAccount? newUser = null;
+            UserAccount? newUser = new();
 
-            newUser = userServices.CheckUserNameExist(UserNameText.Text);
-
-            if (newUser == null)
+            if (checkEmptyInput(UserNameText.Text) || checkEmptyInput(EmailText.Text) || checkEmptyInput(PasswordText.Text))
             {
-                newUser = new() { FullName = UserNameText.Text, Email = EmailText.Text, Password = PasswordText.Text };
-                userServices.AddUser(newUser);
-                MessageBox.Show("Success!!!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
+                MessageBox.Show("Input cant be empty!!!");
+                return;
             }
-            else
+
+            if (_userServices.CheckUserExist(EmailText.Text)!=null)
+            {
                 MessageBox.Show("User name already exist!!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            newUser.FullName = UserNameText.Text;
+            newUser.Email = EmailText.Text;
+            newUser.Password = PasswordText.Text;
+            newUser.Role = 3;
+
+            _userServices.AddUser(newUser);
+            MessageBox.Show("Success!!!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.Close();
         }
+
+        private bool checkEmptyInput(string inputCheck)
+        {
+            if (string.IsNullOrWhiteSpace(inputCheck))
+            {
+                return true;
+            }
+            return false;
+        }
+
         private void UserNameText_GotFocus(object sender, RoutedEventArgs e)
         {
             if (UserNameText.Text == "User Name")
@@ -51,6 +72,7 @@ namespace BookManagerWindow
                 UserNameText.Foreground = Brushes.White;
             }
         }
+
         private void EmailText_GotFocus(object sender, RoutedEventArgs e)
         {
             if (EmailText.Text == "Email")
@@ -59,6 +81,7 @@ namespace BookManagerWindow
                 EmailText.Foreground = Brushes.White;
             }
         }
+
         private void PasswordText_GotFocus(object sender, RoutedEventArgs e)
         {
             if (PasswordText.Text == "Password")
@@ -67,6 +90,7 @@ namespace BookManagerWindow
                 PasswordText.Foreground = Brushes.White;
             }
         }
+
         private void UserNameText_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(UserNameText.Text))
@@ -75,6 +99,7 @@ namespace BookManagerWindow
                 UserNameText.Foreground = Brushes.Gray;
             }
         }
+
         private void EmailText_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(EmailText.Text))
@@ -83,6 +108,7 @@ namespace BookManagerWindow
                 EmailText.Foreground = Brushes.Gray;
             }
         }
+
         private void PasswordText_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(PasswordText.Text))

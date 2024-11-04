@@ -1,4 +1,5 @@
 ﻿using BookManagerWindow;
+using Repositories.Models;
 using Services;
 using System.Text;
 using System.Windows;
@@ -19,32 +20,60 @@ namespace BookManagerWPF
     public partial class MainWindow : Window
     {
         UserAccountServices _accountServices = new();
+        UserAccount? _loginAccount = null;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            EmailText.Text = "Email";
+            EmailText.Foreground = Brushes.Gray;
+            PasswordText.Text = "Password";
+            PasswordText.Foreground = Brushes.Gray;
+        }
+
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             if (!CheckWatermark())
             {
-                if (_accountServices.LoginAccount(UserNameText.Text, PasswordText.Text) == null)
+                string email = EmailText.Text.Trim();
+                string password = PasswordText.Text;
+
+                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
                 {
-                    MessageBox.Show("Wrong User name or Password!!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("User Name and Password cant be Empty!!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                _loginAccount = _accountServices.LoginAccount(EmailText.Text, PasswordText.Text);
+
+                if (_loginAccount == null)
+                {
+                    MessageBox.Show("Invalid User name or Password!!!", "Warning credentials", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (_loginAccount.Role == 3)
+                {
+                    MessageBox.Show("You have no permission", "Wrong permission", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 this.Hide();
                 BookManagementWindow bookManagementWindow = new();
+                bookManagementWindow.LoginUserAccount = _loginAccount;
                 bookManagementWindow.ShowDialog();
+                Window_Loaded(sender, e);
                 this.Show();
             }
         }
 
         private bool CheckWatermark()
         {
-            if (UserNameText.Foreground == Brushes.Gray || PasswordText.Foreground == Brushes.Gray)
+            if (EmailText.Foreground == Brushes.Gray || PasswordText.Foreground == Brushes.Gray)
             {
                 MessageBox.Show("User Name and Password cant be Empty!!!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return true;
@@ -58,21 +87,21 @@ namespace BookManagerWPF
             registerWindow.ShowDialog();
         }
 
-        private void UserNameText_GotFocus(object sender, RoutedEventArgs e)
+        private void EmailText_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (UserNameText.Text == "User Name")
+            if (EmailText.Text == "Email")
             {
-                UserNameText.Text = "";
-                UserNameText.Foreground = Brushes.White;
+                EmailText.Text = "";
+                EmailText.Foreground = Brushes.White;
             }
         }
 
-        private void UserNameText_LostFocus(object sender, RoutedEventArgs e)
+        private void EmailText_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(UserNameText.Text))
+            if (string.IsNullOrWhiteSpace(EmailText.Text))
             {
-                UserNameText.Text = "User Name";
-                UserNameText.Foreground = Brushes.Gray;
+                EmailText.Text = "Email";
+                EmailText.Foreground = Brushes.Gray;
             }
         }
 
