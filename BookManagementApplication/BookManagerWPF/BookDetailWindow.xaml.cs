@@ -220,7 +220,7 @@ namespace BookManagerWindow
             MessageBox.Show("Please choice category", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        private bool IsValidCategory(object bookCategory)
+        private bool IsCategory(object bookCategory)
         {
             if (bookCategory == null)
             {
