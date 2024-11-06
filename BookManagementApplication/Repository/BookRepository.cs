@@ -39,5 +39,17 @@ namespace Repositories
             _context.Books.Remove(book);
             _context.SaveChanges();
         }
+
+        public int GetMaxBookId()
+        {
+            _context = new();
+            return _context.Books.Max(b => b.BookId);
+        }
+
+        public List<Book>? SearchBookFormDB(string bookName, string description)
+        {
+            _context = new();
+            return _context.Books.Where<Book>(b => b.BookName.ToLower().Contains(bookName.ToLower()) && b.Description.ToLower().Contains(description.ToLower())).ToList();
+        }
     }
 }

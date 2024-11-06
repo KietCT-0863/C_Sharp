@@ -17,11 +17,7 @@ namespace Services
 
         public List<Book> GetAllBooks() => _bookList = _bookRepo.GetBooksFromDB();
 
-        public int GetNewBookId()
-        {
-            GetAllBooks();
-            return _bookList.Max(b => b.BookId) + 1;
-        }
+        public int GetNewBookId() => _bookRepo.GetMaxBookId() + 1;
 
         public void AddBook(Book book) => _bookRepo.AddBookToDB(book);
 
@@ -29,8 +25,6 @@ namespace Services
 
         public void UpdateBook(Book book) => _bookRepo.UpdateBookFromDB(book);
 
-        public List<Book> SearchBook(string bookTitle, string description, List<Book> selectedListBook) => selectedListBook.Where<Book>(b => b.BookName.ToLower().Contains(bookTitle.ToLower()) && b.Description.ToLower().Contains(description.ToLower())).ToList();
-
-        public List<Book> SortBook(List<Book> selectedListBook) => selectedListBook.OrderBy(b => b.BookName).ToList();
+        public List<Book>? SearchBook(string title, string description) => _bookRepo.SearchBookFormDB(title, description);
     }
 }

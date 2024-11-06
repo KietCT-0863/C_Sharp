@@ -87,7 +87,7 @@ namespace BookManagerWindow
         {
             string titleSearch = TitleText.Text;
             string descriptionSearch = DescriptionText.Text;
-            List<Book> listBookFound = _bookServices.SearchBook(titleSearch, descriptionSearch, _bookServices.GetAllBooks());
+            List<Book>? listBookFound = _bookServices.SearchBook(titleSearch, descriptionSearch);
 
             if (listBookFound.Count < 1)
             {

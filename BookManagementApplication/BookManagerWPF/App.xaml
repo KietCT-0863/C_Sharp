@@ -40,7 +40,7 @@
         </Style>
 
         <Style TargetType="Grid">
-            <Setter Property="Background" Value="pink"/>
+            <Setter Property="Background" Value="black"/>
         </Style>
         
     </Application.Resources>

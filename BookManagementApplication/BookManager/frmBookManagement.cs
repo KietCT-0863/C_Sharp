@@ -32,7 +32,7 @@ namespace BookManager
             string nameSearch = txtBookNameSearch.Text;
             string descriptionSearch = txtBookDescriptionSearch.Text;
             dgvBookList.DataSource = null;
-            dgvBookList.DataSource = _bookServices.SearchBook(nameSearch, descriptionSearch, _bookServices.GetAllBooks());
+            dgvBookList.DataSource = _bookServices.SearchBook(nameSearch, descriptionSearch);
         }
         private void dgvBookList_SelectionChanged(object sender, EventArgs e)
         {

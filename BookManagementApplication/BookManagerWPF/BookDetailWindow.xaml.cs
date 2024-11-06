@@ -3,6 +3,7 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -60,8 +61,188 @@ namespace BookManagerWindow
             BookIdText.IsEnabled = false;
         }
 
+        private bool IsNullOrWhiteSpace(string? stringCheck)
+        {
+            if (string.IsNullOrWhiteSpace(stringCheck))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsValidAlphabetLength(string stringCheck, int minLength)
+        {
+            if (stringCheck.Length >= minLength)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void PrintNullError(string errorName)
+        {
+            MessageBox.Show(errorName + " cant be Empty", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void PrintLengthError(string errorNames, int number)
+        {
+            MessageBox.Show(errorNames + " must have at least " + number + " characters", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private bool IsValidAlphabet(string stringCheck, int length, string checkName)
+        {
+            if (IsNullOrWhiteSpace(stringCheck) ||
+                !IsValidAlphabetLength(stringCheck, length))
+            {
+                if (IsNullOrWhiteSpace(stringCheck))
+                {
+                    PrintNullError(checkName);
+                }
+                else
+                {
+                    PrintLengthError(checkName, length);
+                }
+
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsNumber(string? stringCheck)
+        {
+            if (int.TryParse(stringCheck, out int value))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsValidNumSize(string? stringCheck, int maxNumber)
+        {
+            if (0 < Convert.ToDouble(stringCheck) &&
+                Convert.ToInt32(stringCheck) < maxNumber)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsValidNumSize(string? stringCheck, double maxNumber)
+        {
+            if (0 <= Convert.ToDouble(stringCheck) &&
+                Convert.ToDouble(stringCheck) <= maxNumber)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void PrintNumberError(string errorName)
+        {
+            MessageBox.Show(errorName + " must be number", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void PrintNumberSizeError(string errorName, int maxNumber)
+        {
+            MessageBox.Show($"{errorName} must greater than 0 and lower than {maxNumber} \n( 0 <= {errorName} <= {maxNumber} )", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void PrintNumberSizeError(string errorName, double maxNumber)
+        {
+            MessageBox.Show($"{errorName} must greater than 0 and lower than {maxNumber} \n( 0 <= {errorName} <= {maxNumber} )", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private bool IsValidNumber(string? intCheck, double maxNumber, string checkName)
+        {
+            if (IsNullOrWhiteSpace(intCheck) ||
+                !IsNumber(intCheck) ||
+                !IsValidNumSize(intCheck, maxNumber))
+            {
+                if (IsNullOrWhiteSpace(intCheck))
+                {
+                    PrintNullError(checkName);
+                }
+                else if (!IsNumber(intCheck))
+                {
+                    PrintNumberError(checkName);
+                }
+                else
+                {
+                    PrintNumberSizeError(checkName, maxNumber);
+                }
+                return false;
+            }
+            return true;
+        }
+
+        private bool IsValidNumber(string? intCheck, int maxNumber, string checkName)
+        {
+            if (IsNullOrWhiteSpace(intCheck) ||
+                !IsNumber(intCheck) ||
+                !IsValidNumSize(intCheck, maxNumber))
+            {
+                if (IsNullOrWhiteSpace(intCheck))
+                {
+                    PrintNullError(checkName);
+                }
+                else if (!IsNumber(intCheck))
+                {
+                    PrintNumberError(checkName);
+                }
+                else
+                {
+                    PrintNumberSizeError(checkName, maxNumber);
+                }
+                return false;
+            }
+            return true;
+        }
+
+        private void PrintDateTimeError()
+        {
+            MessageBox.Show("Date time must follow format[ DD/MM/YYYY", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private bool IsDateTime(string dateTimeCheck)
+        {
+            if (!DateTime.TryParse(dateTimeCheck, out DateTime result))
+            {
+                PrintDateTimeError();
+                return false;
+            }
+            return true;
+        }
+
+        private void PrintCategoryError()
+        {
+            MessageBox.Show("Please choice category", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private bool IsValidCategory(object bookCategory)
+        {
+            if (bookCategory == null)
+            {
+                PrintCategoryError();
+                return false;
+            }
+            return true;
+        }
+
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!IsValidAlphabet(TitleText.Text, 5, "Title") ||
+                !IsValidAlphabet(DescriptionText.Text, 10, "Description") ||
+                !IsDateTime(PublicationDatePicker.Text) ||
+                !IsValidNumber(QuantityText.Text, 500, "Quantity") ||
+                !IsValidNumber(PriceText.Text, 10000.00, "Price") ||
+                !IsValidAlphabet(AuthorText.Text, 5, "Author") ||
+                !IsValidCategory(CategoryComboBox.SelectedValue))
+            {
+                return;
+            }
+
             if (SelectedBook == null)
             {
                 Book newBook = new();
