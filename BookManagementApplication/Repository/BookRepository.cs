@@ -1,4 +1,5 @@
-﻿using Repositories.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Repositories.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,7 +24,7 @@ namespace Repositories
         public List<Book> GetBooksFromDB()
         {
             _context = new();
-            return _context.Books.ToList();
+            return _context.Books.Include("BookCategory").ToList();
         }
 
         public void UpdateBookFromDB(Book newBook)

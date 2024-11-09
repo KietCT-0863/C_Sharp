@@ -20,4 +20,6 @@ public partial class Book
     public string? Author { get; set; }
 
     public int BookCategoryId { get; set; }
+
+    public BookCategory? BookCategory { get; set; } = null!;
 }

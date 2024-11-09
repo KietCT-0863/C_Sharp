@@ -24,7 +24,8 @@
                 <DataGridTextColumn Header="Quantity" Width="90" Binding="{Binding Quantity}" />
                 <DataGridTextColumn Header="Price" Width="70" Binding="{Binding Price}" />
                 <DataGridTextColumn Header="Author" Width="160" Binding="{Binding Author}" />
-                <DataGridTextColumn Header="Category" Width="90" Binding="{Binding BookCategoryId}" />
+                <!--<DataGridTextColumn Header="Category Id" Width="120" Binding="{Binding BookCategoryId}" />-->
+                <DataGridTextColumn Header="Category Name" Width="90" Binding="{Binding BookCategory.BookGenreType}" />
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="CreateBookButton" Content="Create a Book" HorizontalAlignment="Left" Margin="40,245,0,0" FontSize="20" FontFamily="ink free" Width="140" Height="39" VerticalAlignment="Top" Click="CreateBookButton_Click"/>

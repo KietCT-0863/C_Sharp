@@ -22,8 +22,6 @@ namespace BookManagerWindow
     /// </summary>
     public partial class BookDetailWindow : Window
     {
-        // NOTE CHECK INPUT VALIDATION
-
         BookServices _bookService = new();
         BookCategoryServices _bookCategoryService = new();
 
@@ -38,7 +36,7 @@ namespace BookManagerWindow
         {
             CategoryComboBox.ItemsSource = _bookCategoryService.GetAllBookCategories();
             CategoryComboBox.DisplayMemberPath = "BookGenreType";
-            CategoryComboBox.SelectedValue = "BookCategoryId";
+            CategoryComboBox.SelectedValuePath = "BookCategoryId";
 
             if (SelectedBook != null)
             {
@@ -110,12 +108,22 @@ namespace BookManagerWindow
             return true;
         }
 
-        private bool IsNumber(string? stringCheck)
+        private bool IsIntNumber(string? stringCheck)
         {
-            if (int.TryParse(stringCheck, out int value))
+            if (int.TryParse(stringCheck, out int value1))
             {
                 return true;
             }
+            return false;
+        }
+
+        private bool IsDoubleNumber(string? stringCheck)
+        {
+            if (double.TryParse(stringCheck, out double value2))
+            {
+                return true;
+            }
+
             return false;
         }
 
@@ -139,9 +147,9 @@ namespace BookManagerWindow
             return false;
         }
 
-        private void PrintNumberError(string errorName)
+        private void PrintNumberError(string errorName, string numStyle)
         {
-            MessageBox.Show(errorName + " must be number", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show($"{errorName} must be {numStyle}", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void PrintNumberSizeError(string errorName, int maxNumber)
@@ -157,16 +165,16 @@ namespace BookManagerWindow
         private bool IsValidNumber(string? intCheck, double maxNumber, string checkName)
         {
             if (IsNullOrWhiteSpace(intCheck) ||
-                !IsNumber(intCheck) ||
+                !IsDoubleNumber(intCheck) ||
                 !IsValidNumSize(intCheck, maxNumber))
             {
                 if (IsNullOrWhiteSpace(intCheck))
                 {
                     PrintNullError(checkName);
                 }
-                else if (!IsNumber(intCheck))
+                else if (!IsDoubleNumber(intCheck))
                 {
-                    PrintNumberError(checkName);
+                    PrintNumberError(checkName, "Decimal number");
                 }
                 else
                 {
@@ -180,16 +188,16 @@ namespace BookManagerWindow
         private bool IsValidNumber(string? intCheck, int maxNumber, string checkName)
         {
             if (IsNullOrWhiteSpace(intCheck) ||
-                !IsNumber(intCheck) ||
+                !IsIntNumber(intCheck) ||
                 !IsValidNumSize(intCheck, maxNumber))
             {
                 if (IsNullOrWhiteSpace(intCheck))
                 {
                     PrintNullError(checkName);
                 }
-                else if (!IsNumber(intCheck))
+                else if (!IsIntNumber(intCheck))
                 {
-                    PrintNumberError(checkName);
+                    PrintNumberError(checkName, "Natural number");
                 }
                 else
                 {
@@ -253,7 +261,7 @@ namespace BookManagerWindow
                 newBook.Quantity = Convert.ToInt32(QuantityText.Text);
                 newBook.Price = Convert.ToDouble(PriceText.Text);
                 newBook.Author = AuthorText.Text;
-                newBook.BookCategoryId = Convert.ToInt32(CategoryComboBox.SelectedValue.ToString());
+                newBook.BookCategoryId = Convert.ToInt32(CategoryComboBox.SelectedValue);
                 _bookService.AddBook(newBook);
                 MessageBox.Show("Create book Success!!!", "Information", MessageBoxButton.OK);
                 this.Close();
@@ -268,7 +276,7 @@ namespace BookManagerWindow
                 updateBook.Quantity = Convert.ToInt32(QuantityText.Text);
                 updateBook.Price = Convert.ToDouble(PriceText.Text);
                 updateBook.Author = AuthorText.Text;
-                updateBook.BookCategoryId = Convert.ToInt32(CategoryComboBox.SelectedValue.ToString());
+                updateBook.BookCategoryId = Convert.ToInt32(CategoryComboBox.SelectedValue);
                 _bookService.UpdateBook(updateBook);
                 MessageBox.Show("Update book Success!!!", "Information", MessageBoxButton.OK);
                 this.Close();

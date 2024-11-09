@@ -78,7 +78,6 @@ namespace BookManagerWindow
 
             if (result == MessageBoxResult.Yes)
             {
-                //Application.Current.Shutdown();
                 this.Close();
             }
         }
